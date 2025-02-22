@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GearShift Prints</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
             background-color: #222;
             color: white;
             text-align: center;
@@ -16,8 +18,10 @@
         header {
             background-color: #ff0000;
             padding: 20px;
-            font-size: 24px;
+            font-size: 36px;
             font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 5px solid white;
         }
         .gallery {
             display: flex;
@@ -31,21 +35,33 @@
             height: auto;
             border: 3px solid #fff;
             border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
         }
         .buy-btn {
             background-color: #ff0000;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 30px;
             margin: 20px;
             border: none;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .buy-btn:hover {
+            background-color: #cc0000;
         }
         footer {
             margin-top: 20px;
             padding: 10px;
             background-color: #333;
+            font-size: 18px;
+            border-top: 5px solid white;
         }
     </style>
 </head>
@@ -65,7 +81,7 @@
     
     <script>
         function buyPoster() {
-            window.location.href = "mailto:trytofly50@gmail.com?subject=Buying a Poster&body=I want to buy a car poster.";
+            window.location.href = "https://www.paypal.com/buy-now-link"; // Replace with your PayPal link
         }
     </script>
 </body>
