@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GearShift Prints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff0000;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 300px;
+            height: auto;
+            border: 3px solid #fff;
+            border-radius: 10px;
+        }
+        .buy-btn {
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            margin: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>GearShift Prints - Digital Car Posters</header>
+    <p>High-quality digital car posters. Preview and buy now!</p>
+    
+    <div class="gallery">
+        <img src="poster1.jpg" alt="Car Poster 1">
+        <img src="poster2.jpg" alt="Car Poster 2">
+        <img src="poster3.jpg" alt="Car Poster 3">
+    </div>
+    
+    <button class="buy-btn" onclick="buyPoster()">Buy Now</button>
+    
+    <footer>Contact us at: gearshiftprints@example.com</footer>
+    
+    <script>
+        function buyPoster() {
+            window.location.href = "mailto:gearshiftprints@example.com?subject=Buying a Poster&body=I want to buy a car poster.";
+        }
+    </script>
+</body>
+</html>
