@@ -6,41 +6,43 @@
     <title>GearShift Prints</title>
     <style>
         body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #1c1c1c;
+            font-family: 'Top Gear Font', sans-serif;
+            background: url('background1.png') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             text-align: center;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #d40000;
+            background-color: rgba(255, 0, 0, 0.8);
             padding: 20px;
-            font-size: 30px;
+            font-size: 24px;
             font-weight: bold;
-            text-transform: uppercase;
         }
-        nav {
+        .navbar {
             display: flex;
-            justify-content: center;
-            background-color: #333;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-        }
-        .section {
-            padding: 40px;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+        }
+        .navbar a:hover {
+            background-color: red;
+            border-radius: 5px;
+        }
+        .section {
+            display: none;
+            padding: 50px;
+        }
+        .active {
+            display: block;
         }
         .gallery img {
             width: 300px;
@@ -49,7 +51,7 @@
             border-radius: 10px;
         }
         .buy-btn {
-            background-color: #d40000;
+            background-color: #ff0000;
             color: white;
             padding: 10px 20px;
             margin: 20px;
@@ -58,78 +60,60 @@
             font-size: 18px;
             border-radius: 5px;
         }
-        .collection {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .collection button {
-            background-color: #d40000;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .collection-content {
-            display: none;
-            margin-top: 20px;
-        }
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #333;
-        }
     </style>
 </head>
 <body>
-    <header>GearShift Prints - Digital Car Posters</header>
-    <nav>
-        <a href="#about">About Us</a>
-        <a href="#posters">Posters</a>
-        <a href="#collections">Collections</a>
+    <header>
+        <img src="logo.png" alt="GearShift Prints Logo" width="200">
+        <p>GearShift Prints - Digital Car Posters</p>
+    </header>
+    
+    <nav class="navbar">
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('posters')">Posters</a>
+        <a href="#" onclick="showSection('collections')">Collections</a>
+        <a href="#" onclick="showSection('about')">About Us</a>
     </nav>
     
-    <section id="about" class="section">
-        <h2>About Us</h2>
-        <p>High-quality digital car posters. Preview and buy now!</p>
-    </section>
+    <div id="home" class="section active">
+        <h2>The Best Ayrton Senna Posters</h2>
+        <p>80s cars and high-quality racing posters.</p>
+    </div>
     
-    <section id="posters" class="section">
+    <div id="posters" class="section">
         <h2>Posters</h2>
         <div class="gallery">
             <img src="senna poster.png" alt="Senna Poster">
             <img src="senna poster 2.png" alt="Senna Poster 2">
             <img src="senna poster 3.png" alt="Senna Poster 3">
         </div>
-        <button class="buy-btn" onclick="buyPoster()">Buy Now</button>
-    </section>
+    </div>
     
-    <section id="collections" class="section">
+    <div id="collections" class="section">
         <h2>Collections</h2>
-        <div class="collection">
-            <button onclick="toggleCollection()">SENNA</button>
-            <div id="senna-collection" class="collection-content">
-                <div class="gallery">
-                    <img src="senna poster.png" alt="Senna Poster">
-                    <img src="senna poster 2.png" alt="Senna Poster 2">
-                    <img src="senna poster 3.png" alt="Senna Poster 3">
-                </div>
-            </div>
-        </div>
-    </section>
+        <button onclick="showSection('senna-collection')">SENNA</button>
+    </div>
     
-    <footer>Contact us at: trytofly50@gmail.com</footer>
+    <div id="senna-collection" class="section">
+        <h2>Senna Collection</h2>
+        <div class="gallery">
+            <img src="senna poster.png" alt="Senna Poster">
+            <img src="senna poster 2.png" alt="Senna Poster 2">
+            <img src="senna poster 3.png" alt="Senna Poster 3">
+        </div>
+    </div>
+    
+    <div id="about" class="section">
+        <h2>About Us</h2>
+        <p>GearShift Prints offers high-quality digital car posters.</p>
+        <p>Contact us at: trytofly50@gmail.com</p>
+    </div>
     
     <script>
-        function buyPoster() {
-            window.location.href = "https://www.paypal.com/buy-now";
-        }
-        function toggleCollection() {
-            var collection = document.getElementById("senna-collection");
-            collection.style.display = (collection.style.display === "none" || collection.style.display === "") ? "block" : "none";
+        function showSection(sectionId) {
+            let sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
         }
     </script>
 </body>
