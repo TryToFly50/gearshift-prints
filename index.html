@@ -15,7 +15,7 @@
             padding: 0;
         }
         header {
-            background-color: rgba(0, 48, 87, 0.8);
+            background-color: rgba(3, 47, 17, 0.8);
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
@@ -24,7 +24,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            background-color: rgba(85, 107, 47, 0.8);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
         }
         .navbar a {
@@ -45,13 +45,13 @@
             display: block;
         }
         .gallery img {
-            width: 300px;
+            width: 250px;
             height: auto;
             border: 3px solid #fff;
             border-radius: 10px;
         }
         .buy-btn {
-            background-color: gold;
+            background-color: #032F11;
             color: white;
             padding: 10px 20px;
             margin: 20px;
@@ -62,12 +62,19 @@
         }
         .slideshow-container {
             position: relative;
-            max-width: 100%;
+            max-width: 500px;
             margin: auto;
+            overflow: hidden;
         }
         .slide {
             display: none;
+            position: absolute;
             width: 100%;
+            animation: slideRight 1s ease-in-out;
+        }
+        @keyframes slideRight {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
     </style>
 </head>
@@ -88,7 +95,7 @@
         <p>80s cars and high-quality racing posters.</p>
         <div class="slideshow-container">
             <img class="slide" src="ferrarimedellin.png" alt="Ferrari Medellin">
-            <img class="slide" src="sennagrande.png" alt="Senna Grande">
+            <img class="slide" src="lm002.png" alt="Lamborghini LM002">
         </div>
     </div>
     
@@ -143,4 +150,3 @@
     </script>
 </body>
 </html>
-
