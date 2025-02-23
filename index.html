@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GearShift Prints</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Garamond&display=swap');
-        
         body {
             font-family: 'Playfair Display', serif;
             background: url('background1.png') no-repeat center center fixed;
@@ -17,17 +15,16 @@
             padding: 0;
         }
         header {
-            background-color: rgba(8, 44, 74, 0.9);
+            background-color: rgba(0, 48, 87, 0.8);
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
-            font-family: 'Garamond', serif;
         }
         .navbar {
             display: flex;
             justify-content: center;
             gap: 20px;
-            background-color: rgba(212, 175, 55, 0.9);
+            background-color: rgba(85, 107, 47, 0.8);
             padding: 10px;
         }
         .navbar a {
@@ -35,10 +32,9 @@
             text-decoration: none;
             font-size: 18px;
             padding: 10px;
-            font-family: 'Garamond', serif;
         }
         .navbar a:hover {
-            background-color: olive;
+            background-color: gold;
             border-radius: 5px;
         }
         .section {
@@ -51,11 +47,11 @@
         .gallery img {
             width: 300px;
             height: auto;
-            border: 3px solid gold;
+            border: 3px solid #fff;
             border-radius: 10px;
         }
         .buy-btn {
-            background-color: olive;
+            background-color: gold;
             color: white;
             padding: 10px 20px;
             margin: 20px;
@@ -63,13 +59,20 @@
             cursor: pointer;
             font-size: 18px;
             border-radius: 5px;
-            font-family: 'Playfair Display', serif;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+        .slide {
+            display: none;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="logo1.png" alt="LOGO" style="max-width: 150px; height: auto;">
         <p>GearShift Prints - Digital Car Posters</p>
     </header>
     
@@ -83,6 +86,10 @@
     <div id="home" class="section active">
         <h2>The Best Ayrton Senna Posters</h2>
         <p>80s cars and high-quality racing posters.</p>
+        <div class="slideshow-container">
+            <img class="slide" src="ferrarimedellin.png" alt="Ferrari Medellin">
+            <img class="slide" src="sennagrande.png" alt="Senna Grande">
+        </div>
     </div>
     
     <div id="posters" class="section">
@@ -96,7 +103,7 @@
     
     <div id="collections" class="section">
         <h2>Collections</h2>
-        <button onclick="showSection('senna-collection')" class="buy-btn">SENNA</button>
+        <button onclick="showSection('senna-collection')">SENNA</button>
     </div>
     
     <div id="senna-collection" class="section">
@@ -120,6 +127,19 @@
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
         }
+
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000);
+        }
+        showSlides();
     </script>
 </body>
 </html>
