@@ -6,16 +6,15 @@
     <title>GearShift Prints</title>
     <style>
         body {
-            font-family: 'Playfair Display', serif;
-            background: url('background1.png') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
+            font-family: 'Times New Roman', serif;
+            background-color: #0C2C56; /* Navy Blue */
+            color: #D4AF37; /* Gold */
             text-align: center;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: rgba(3, 47, 17, 0.8);
+            background-color: #556B2F; /* Olive Green */
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
@@ -24,17 +23,17 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #0C2C56;
             padding: 10px;
         }
         .navbar a {
-            color: white;
+            color: #D4AF37;
             text-decoration: none;
             font-size: 18px;
             padding: 10px;
         }
         .navbar a:hover {
-            background-color: gold;
+            background-color: #556B2F;
             border-radius: 5px;
         }
         .section {
@@ -45,14 +44,14 @@
             display: block;
         }
         .gallery img {
-            width: 250px;
+            width: 300px;
             height: auto;
-            border: 3px solid #fff;
+            border: 3px solid #D4AF37;
             border-radius: 10px;
         }
         .buy-btn {
-            background-color: #032F11;
-            color: white;
+            background-color: #D4AF37;
+            color: #0C2C56;
             padding: 10px 20px;
             margin: 20px;
             border: none;
@@ -62,19 +61,26 @@
         }
         .slideshow-container {
             position: relative;
-            max-width: 500px;
+            max-width: 60%;
             margin: auto;
             overflow: hidden;
         }
-        .slide {
+        .slideshow img {
+            width: 100%;
             display: none;
             position: absolute;
-            width: 100%;
+        }
+        .slideshow img.active {
+            display: block;
             animation: slideRight 1s ease-in-out;
         }
         @keyframes slideRight {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
@@ -94,8 +100,8 @@
         <h2>The Best Ayrton Senna Posters</h2>
         <p>80s cars and high-quality racing posters.</p>
         <div class="slideshow-container">
-            <img class="slide" src="ferrarimedellin.png" alt="Ferrari Medellin">
-            <img class="slide" src="lm002.png" alt="Lamborghini LM002">
+            <img class="slideshow active" src="ferrarimedellin.png" alt="Ferrari Medellin">
+            <img class="slideshow" src="lm002.png" alt="LM002">
         </div>
     </div>
     
@@ -134,19 +140,16 @@
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
         }
-
-        let slideIndex = 0;
-        function showSlides() {
-            let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 3000);
+        
+        let currentIndex = 0;
+        function changeSlide() {
+            let slides = document.querySelectorAll('.slideshow');
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
         }
-        showSlides();
+        
+        setInterval(changeSlide, 3000);
     </script>
 </body>
 </html>
