@@ -45,15 +45,18 @@
         }
 
         .section {
-            display: none;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            padding: 50px;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-in-out, height 0s linear 0.5s, visibility 0s linear 0.5s;
         }
 
         .active {
-            display: block;
             opacity: 1;
+            visibility: visible;
+            height: auto;
+            transition: opacity 0.5s ease-in-out, height 0s linear 0s, visibility 0s linear 0s;
         }
 
         .slideshow-container {
@@ -87,22 +90,11 @@
         button:active {
             transform: scale(0.9);
         }
-
-        .hidden {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .show {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
     <header>
-        <p class="hidden">GearShift Prints - Digital Car Posters</p>
+        <p>GearShift Prints - Digital Car Posters</p>
     </header>
 
     <nav class="navbar">
@@ -113,8 +105,8 @@
     </nav>
 
     <div id="home" class="section active">
-        <h2 class="hidden">The Best Ayrton Senna Posters</h2>
-        <p class="hidden">80s cars and high-quality racing posters.</p>
+        <h2>The Best Ayrton Senna Posters</h2>
+        <p>80s cars and high-quality racing posters.</p>
         <div class="slideshow-container">
             <img class="slide active" src="ferrarimedellin.png" alt="Ferrari Medellin">
             <img class="slide" src="lm002.png" alt="Lamborghini LM002">
@@ -122,45 +114,39 @@
     </div>
 
     <div id="posters" class="section">
-        <h2 class="hidden">Posters</h2>
+        <h2>Posters</h2>
         <div class="gallery">
-            <img src="senna1.png" alt="Senna Poster" class="hidden">
-            <img src="senna2.png" alt="Senna Poster 2" class="hidden">
-            <img src="senna3.png" alt="Senna Poster 3" class="hidden">
+            <img src="senna1.png" alt="Senna Poster">
+            <img src="senna2.png" alt="Senna Poster 2">
+            <img src="senna3.png" alt="Senna Poster 3">
         </div>
     </div>
 
     <div id="collections" class="section">
-        <h2 class="hidden">Collections</h2>
+        <h2>Collections</h2>
         <button onclick="showSection('senna-collection')">SENNA</button>
     </div>
 
     <div id="senna-collection" class="section">
-        <h2 class="hidden">Senna Collection</h2>
+        <h2>Senna Collection</h2>
         <div class="gallery">
-            <img src="senna1.png" alt="Senna Poster" class="hidden">
-            <img src="senna2.png" alt="Senna Poster 2" class="hidden">
-            <img src="senna3.png" alt="Senna Poster 3" class="hidden">
+            <img src="senna1.png" alt="Senna Poster">
+            <img src="senna2.png" alt="Senna Poster 2">
+            <img src="senna3.png" alt="Senna Poster 3">
         </div>
     </div>
 
     <div id="about" class="section">
-        <h2 class="hidden">About Us</h2>
-        <p class="hidden">GearShift Prints offers high-quality digital car posters.</p>
-        <p class="hidden">Contact us at: trytofly50@gmail.com</p>
+        <h2>About Us</h2>
+        <p>GearShift Prints offers high-quality digital car posters.</p>
+        <p>Contact us at: trytofly50@gmail.com</p>
     </div>
 
     <script>
         function showSection(sectionId) {
             let sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-                setTimeout(() => section.style.display = 'none', 500);
-            });
-
-            let activeSection = document.getElementById(sectionId);
-            activeSection.style.display = 'block';
-            setTimeout(() => activeSection.classList.add('active'), 10);
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
         }
 
         let slideIndex = 0;
@@ -174,23 +160,6 @@
             setTimeout(showSlides, 3000);
         }
         showSlides();
-
-        document.addEventListener("DOMContentLoaded", function() {
-            let elements = document.querySelectorAll('.hidden');
-
-            function revealOnScroll() {
-                let scrollPosition = window.innerHeight + window.scrollY;
-                elements.forEach(el => {
-                    if (el.offsetTop < scrollPosition) {
-                        el.classList.add('show');
-                    }
-                });
-            }
-
-            window.addEventListener("scroll", revealOnScroll);
-            revealOnScroll();
-        });
     </script>
 </body>
 </html>
-
