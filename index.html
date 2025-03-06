@@ -65,11 +65,12 @@
 
         .slide {
             position: absolute;
+            width: 100%;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
-        .slide.active {
+        .slide.show {
             opacity: 1;
         }
 
@@ -117,8 +118,8 @@
         <h2 class="hidden">The Best Ayrton Senna Posters</h2>
         <p class="hidden">80s cars and high-quality racing posters.</p>
         <div class="slideshow-container">
-            <img class="slide active fade" src="ferrarimedellin.png" alt="Ferrari Medellin">
-            <img class="slide fade" src="lm002.png" alt="Lamborghini LM002">
+            <img class="slide show" src="ferrarimedellin.png" alt="Ferrari Medellin">
+            <img class="slide" src="lm002.png" alt="Lamborghini LM002">
         </div>
     </div>
 
@@ -167,11 +168,11 @@
         let slideIndex = 0;
         function showSlides() {
             let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            slides[slideIndex].classList.add("active");
+            slides[slideIndex].classList.remove("show");
+
             slideIndex = (slideIndex + 1) % slides.length;
+
+            slides[slideIndex].classList.add("show");
             setTimeout(showSlides, 3000);
         }
         showSlides();
