@@ -64,14 +64,12 @@
         }
 
         .slide {
-            position: absolute;
+            display: none;
             width: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
         }
 
         .slide.active {
-            opacity: 1;
+            display: block;
         }
 
         .gallery img {
@@ -168,13 +166,11 @@
         let slideIndex = 0;
         function showSlides() {
             let slides = document.querySelectorAll(".slide");
-            let currentSlide = slides[slideIndex];
-            let nextSlide = slides[(slideIndex + 1) % slides.length];
-
-            currentSlide.classList.remove("active");
-            nextSlide.classList.add("active");
+            slides.forEach(slide => slide.classList.remove("active"));
 
             slideIndex = (slideIndex + 1) % slides.length;
+            slides[slideIndex].classList.add("active");
+
             setTimeout(showSlides, 3000);
         }
         showSlides();
@@ -197,3 +193,4 @@
     </script>
 </body>
 </html>
+
