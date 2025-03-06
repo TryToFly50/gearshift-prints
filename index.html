@@ -14,12 +14,14 @@
             margin: 0;
             padding: 0;
         }
+
         header {
             background-color: rgba(218, 165, 32, 0.8);
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
         }
+
         .navbar {
             display: flex;
             justify-content: center;
@@ -27,112 +29,168 @@
             background-color: rgba(0, 0, 128, 0.8);
             padding: 10px;
         }
+
         .navbar a {
             color: white;
             text-decoration: none;
             font-size: 18px;
             padding: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         .navbar a:hover {
             background-color: olive;
             border-radius: 5px;
+            transform: scale(1.1);
         }
+
         .section {
             display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
             padding: 50px;
         }
+
         .active {
             display: block;
+            opacity: 1;
         }
+
         .slideshow-container {
             position: relative;
             max-width: 80%;
             margin: auto;
             overflow: hidden;
         }
+
         .slide {
-            display: none;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .gallery img {
             width: 100%;
-            transition: transform 1s ease-in-out;
+            max-width: 300px;
+            margin: 10px;
         }
-        .fade {
-            animation: fadeEffect 1s;
+
+        button {
+            transition: transform 0.2s ease;
+            padding: 10px;
+            font-size: 16px;
         }
-        @keyframes fadeEffect {
-            from {opacity: 0.4;}
-            to {opacity: 1;}
+
+        button:active {
+            transform: scale(0.9);
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <header>
-        <p>GearShift Prints - Digital Car Posters</p>
+        <p class="hidden">GearShift Prints - Digital Car Posters</p>
     </header>
-    
+
     <nav class="navbar">
         <a href="#" onclick="showSection('home')">Home</a>
         <a href="#" onclick="showSection('posters')">Posters</a>
         <a href="#" onclick="showSection('collections')">Collections</a>
         <a href="#" onclick="showSection('about')">About Us</a>
     </nav>
-    
+
     <div id="home" class="section active">
-        <h2>The Best Ayrton Senna Posters</h2>
-        <p>80s cars and high-quality racing posters.</p>
+        <h2 class="hidden">The Best Ayrton Senna Posters</h2>
+        <p class="hidden">80s cars and high-quality racing posters.</p>
         <div class="slideshow-container">
-            <img class="slide fade" src="ferrarimedellin.png" alt="Ferrari Medellin">
+            <img class="slide active fade" src="ferrarimedellin.png" alt="Ferrari Medellin">
             <img class="slide fade" src="lm002.png" alt="Lamborghini LM002">
         </div>
     </div>
-    
+
     <div id="posters" class="section">
-        <h2>Posters</h2>
+        <h2 class="hidden">Posters</h2>
         <div class="gallery">
-            <img src="senna1.png" alt="Senna Poster">
-            <img src="senna2.png" alt="Senna Poster 2">
-            <img src="senna3.png" alt="Senna Poster 3">
+            <img src="senna1.png" alt="Senna Poster" class="hidden">
+            <img src="senna2.png" alt="Senna Poster 2" class="hidden">
+            <img src="senna3.png" alt="Senna Poster 3" class="hidden">
         </div>
     </div>
-    
+
     <div id="collections" class="section">
-        <h2>Collections</h2>
+        <h2 class="hidden">Collections</h2>
         <button onclick="showSection('senna-collection')">SENNA</button>
     </div>
-    
+
     <div id="senna-collection" class="section">
-        <h2>Senna Collection</h2>
+        <h2 class="hidden">Senna Collection</h2>
         <div class="gallery">
-            <img src="senna1.png" alt="Senna Poster">
-            <img src="senna2.png" alt="Senna Poster 2">
-            <img src="senna3.png" alt="Senna Poster 3">
+            <img src="senna1.png" alt="Senna Poster" class="hidden">
+            <img src="senna2.png" alt="Senna Poster 2" class="hidden">
+            <img src="senna3.png" alt="Senna Poster 3" class="hidden">
         </div>
     </div>
-    
+
     <div id="about" class="section">
-        <h2>About Us</h2>
-        <p>GearShift Prints offers high-quality digital car posters.</p>
-        <p>Contact us at: trytofly50@gmail.com</p>
+        <h2 class="hidden">About Us</h2>
+        <p class="hidden">GearShift Prints offers high-quality digital car posters.</p>
+        <p class="hidden">Contact us at: trytofly50@gmail.com</p>
     </div>
-    
+
     <script>
         function showSection(sectionId) {
             let sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                setTimeout(() => section.style.display = 'none', 500);
+            });
+
+            let activeSection = document.getElementById(sectionId);
+            activeSection.style.display = 'block';
+            setTimeout(() => activeSection.classList.add('active'), 10);
         }
-        
+
         let slideIndex = 0;
         function showSlides() {
             let slides = document.getElementsByClassName("slide");
             for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+                slides[i].classList.remove("active");
             }
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].style.display = "block";
+            slides[slideIndex].classList.add("active");
+            slideIndex = (slideIndex + 1) % slides.length;
             setTimeout(showSlides, 3000);
         }
         showSlides();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let elements = document.querySelectorAll('.hidden');
+
+            function revealOnScroll() {
+                let scrollPosition = window.innerHeight + window.scrollY;
+                elements.forEach(el => {
+                    if (el.offsetTop < scrollPosition) {
+                        el.classList.add('show');
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll();
+        });
     </script>
 </body>
 </html>
